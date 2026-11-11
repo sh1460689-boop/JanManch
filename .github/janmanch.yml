@@ -1,0 +1,46 @@
+# JAN MANCH - FINAL CONFIG - Sab Key Yahi Hai
+app_name: JAN MANCH
+app_version: FINAL
+owner: sh14606
+language: Hindi
+
+# --- FIREBASE - TERI ASLI KEY ---
+firebase:
+  apiKey: "AIzaSyCFLvi8o_TXATkNuY_mGytyzq2xkHSweXA"
+  authDomain: "janmanch-e8cf5.firebaseapp.com"
+  projectId: "janmanch-e8cf5"
+  storageBucket: "janmanch-e8cf5.firebasestorage.app"
+  messagingSenderId: "771870997837"
+  appId: "1:771870997837:web:1b83d491e23c6d9a688b04"
+  measurementId: "G-KQR4657KPG"
+
+# --- YOUTUBE KEY ---
+youtube:
+  apiKey: "AIzaSyByVAA2VcVGMRrfDSXEdXUHUXPiReJN8BI"
+
+# --- ZINI AI KEY ---
+gemini:
+  apiKey: "AQ.Ab8RN6Ktkd2kcVh5AKqtwNxR25kxtkoFaCvrHzlKU1M7aHfxWg"
+
+# --- ADMOB TEST AD ---
+admob:
+  appId: "ca-app-pub-3940256099942544~3347511713"
+  banner: "ca-app-pub-3940256099942544/6300978111"
+  full: "ca-app-pub-3940256099942544/1033173712"
+  rewarded: "ca-app-pub-3940256099942544/5224354917"
+
+# --- WALLET RATE ---
+wallet:
+  per_1000_views: 50
+  per_like: 0.50
+  per_ad_view: 1
+  per_rewarded_ad: 5
+  per_upload: 10
+  min_withdraw: 500
+
+# --- PROFILE - TERI PHOTO WALI SETTING ---
+profile:
+  name: "Janmanch User"
+  handle: "@janmanch_user"
+  city: "Bindki, UP"
+  photo: "profile.jpg"
