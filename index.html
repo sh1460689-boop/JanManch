@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jan Manch - Sab Kuch Ek App Me</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0f0f0f;color:#fff;padding-bottom:80px}
+header{background:#ff3b00;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-size:22px}
+header p{font-size:12px;opacity:.9}
+.ad{background:#fff;color:#000;text-align:center;padding:10px;margin:10px;border-radius:10px;font-weight:bold;font-size:13px}
+.tabs{display:flex;justify-content:space-around;background:#1e1e1e;padding:10px;position:sticky;top:62px;z-index:9}
+.tabs button{background:#333;color:#fff;border:none;padding:10px 14px;border-radius:20px;cursor:pointer}
+.tabs button.active{background:#ff3b00}
+.section{display:none;padding:15px}
+.section.active{display:block}
+.card{background:#1e1e1e;padding:15px;border-radius:12px;margin-bottom:12px}
+.card h3{margin-bottom:8px;color:#ffcc00}
+input,textarea{width:100%;padding:12px;border-radius:8px;border:none;margin:8px 0;background:#2a2a2a;color:#fff}
+.btn{background:#ff3b00;color:#fff;border:none;padding:12px;width:100%;border-radius:8px;font-weight:bold;cursor:pointer}
+.video-box iframe{width:100%;height:220px;border-radius:10px;border:none}
+.chat-box{height:300px;overflow-y:auto;background:#111;padding:10px;border-radius:10px;margin-bottom:10px}
+.msg{padding:8px 10px;border-radius:10px;margin:5px 0;max-width:85%}
+.me{background:#ff3b00;margin-left:auto;text-align:right}
+.zini{background:#2a2a2a}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;text-align:center;padding:8px;font-size:12px}
+a{color:#25D366;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🇮🇳 JAN MANCH</h1>
+<p>Instagram • YouTube • Zini Chat • WhatsApp - Sab Ek Jagah</p>
+</header>
+
+<div class="ad">📢 AD - Jan Manch Sponsor | Apna Ad Yahan Lagwaye</div>
+
+<div class="tabs">
+<button onclick="show('home')" id="b-home" class="active">Home</button>
+<button onclick="show('youtube')" id="b-youtube">YouTube</button>
+<button onclick="show('zini')" id="b-zini">Zini Chat</button>
+<button onclick="show('wa')" id="b-wa">WhatsApp</button>
+</div>
+
+<!-- HOME -->
+<div id="home" class="section active">
+<div class="card"><h3>🔥 Aaj Ka Manch</h3><p>Jan Manch me aapka swagat hai! Yahan YouTube dekho, Zini se baat karo, WhatsApp pe share karo.</p></div>
+<div class="card"><h3>📺 YouTube Video Dekho</h3><p>Koi bhi video search karo, turant chalega.</p><button class="btn" onclick="show('youtube')">YouTube Kholo</button></div>
+<div class="card"><h3>🤖 Zini - Apna AI Dost</h3><p>Kuch bhi pucho, Hindi me jawab milega.</p><button class="btn" onclick="show('zini')">Zini Se Baat Karo</button></div>
+</div>
+
+<!-- YOUTUBE -->
+<div id="youtube" class="section">
+<div class="card"><h3>📺 YouTube Search</h3>
+<input id="ytq" placeholder="Video search karo... jaise - Modi Speech">
+<button class="btn" onclick="searchYT()">Search Karo</button>
+</div>
+<div id="ytResult" class="card"><p>Upar search karo, video yahan chalega.</p></div>
+<div class="card"><h3>🔥 Trending Video</h3>
+<div class="video-box"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+</div>
+</div>
+
+<!-- ZINI CHAT -->
+<div id="zini" class="section">
+<div class="card"><h3>🤖 Zini Chat - Hindi AI</h3>
+<div class="chat-box" id="chatBox"><div class="msg zini">Namaste! Main Zini hu 🙏 Kuch bhi pucho...</div></div>
+<input id="chatInput" placeholder="Yahan likho...">
+<button class="btn" onclick="askZini()">Bhejo</button>
+<p style="font-size:11px;margin-top:8px;opacity:.7">Note: Gemini Key lagane ke baad Zini real jawab dega. Abhi demo mode me hai.</p>
+</div>
+</div>
+
+<!-- WHATSAPP -->
+<div id="wa" class="section">
+<div class="card"><h3>💚 WhatsApp Pe Share Karo</h3>
+<p>Apne doston ko Jan Manch bhejo:</p><br>
+<a href="https://wa.me/?text=Jan%20Manch%20dekho%20-%20https%3A%2F%2Fsh14606.github.io%2Fjanmanch%2F" target="_blank">
