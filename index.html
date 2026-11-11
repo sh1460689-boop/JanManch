@@ -2,80 +2,65 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jan Manch - Sab Kuch Ek App Me</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>JAN MANCH - FINAL - Ek Hi Code</title>
+<meta name="theme-color" content="#000000">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0f0f0f;color:#fff;padding-bottom:80px}
-header{background:#ff3b00;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
-header h1{font-size:22px}
-header p{font-size:12px;opacity:.9}
-.ad{background:#fff;color:#000;text-align:center;padding:10px;margin:10px;border-radius:10px;font-weight:bold;font-size:13px}
-.tabs{display:flex;justify-content:space-around;background:#1e1e1e;padding:10px;position:sticky;top:62px;z-index:9}
-.tabs button{background:#333;color:#fff;border:none;padding:10px 14px;border-radius:20px;cursor:pointer}
-.tabs button.active{background:#ff3b00}
-.section{display:none;padding:15px}
-.section.active{display:block}
-.card{background:#1e1e1e;padding:15px;border-radius:12px;margin-bottom:12px}
-.card h3{margin-bottom:8px;color:#ffcc00}
-input,textarea{width:100%;padding:12px;border-radius:8px;border:none;margin:8px 0;background:#2a2a2a;color:#fff}
-.btn{background:#ff3b00;color:#fff;border:none;padding:12px;width:100%;border-radius:8px;font-weight:bold;cursor:pointer}
-.video-box iframe{width:100%;height:220px;border-radius:10px;border:none}
-.chat-box{height:300px;overflow-y:auto;background:#111;padding:10px;border-radius:10px;margin-bottom:10px}
-.msg{padding:8px 10px;border-radius:10px;margin:5px 0;max-width:85%}
-.me{background:#ff3b00;margin-left:auto;text-align:right}
-.zini{background:#2a2a2a}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;text-align:center;padding:8px;font-size:12px}
-a{color:#25D366;text-decoration:none;font-weight:bold}
-</style>
-</head>
-<body>
-
-<header>
-<h1>🇮🇳 JAN MANCH</h1>
-<p>Instagram • YouTube • Zini Chat • WhatsApp - Sab Ek Jagah</p>
-</header>
-
-<div class="ad">📢 AD - Jan Manch Sponsor | Apna Ad Yahan Lagwaye</div>
-
-<div class="tabs">
-<button onclick="show('home')" id="b-home" class="active">Home</button>
-<button onclick="show('youtube')" id="b-youtube">YouTube</button>
-<button onclick="show('zini')" id="b-zini">Zini Chat</button>
-<button onclick="show('wa')" id="b-wa">WhatsApp</button>
-</div>
-
-<!-- HOME -->
-<div id="home" class="section active">
-<div class="card"><h3>🔥 Aaj Ka Manch</h3><p>Jan Manch me aapka swagat hai! Yahan YouTube dekho, Zini se baat karo, WhatsApp pe share karo.</p></div>
-<div class="card"><h3>📺 YouTube Video Dekho</h3><p>Koi bhi video search karo, turant chalega.</p><button class="btn" onclick="show('youtube')">YouTube Kholo</button></div>
-<div class="card"><h3>🤖 Zini - Apna AI Dost</h3><p>Kuch bhi pucho, Hindi me jawab milega.</p><button class="btn" onclick="show('zini')">Zini Se Baat Karo</button></div>
-</div>
-
-<!-- YOUTUBE -->
-<div id="youtube" class="section">
-<div class="card"><h3>📺 YouTube Search</h3>
-<input id="ytq" placeholder="Video search karo... jaise - Modi Speech">
-<button class="btn" onclick="searchYT()">Search Karo</button>
-</div>
-<div id="ytResult" class="card"><p>Upar search karo, video yahan chalega.</p></div>
-<div class="card"><h3>🔥 Trending Video</h3>
-<div class="video-box"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
-</div>
-</div>
-
-<!-- ZINI CHAT -->
-<div id="zini" class="section">
-<div class="card"><h3>🤖 Zini Chat - Hindi AI</h3>
-<div class="chat-box" id="chatBox"><div class="msg zini">Namaste! Main Zini hu 🙏 Kuch bhi pucho...</div></div>
-<input id="chatInput" placeholder="Yahan likho...">
-<button class="btn" onclick="askZini()">Bhejo</button>
-<p style="font-size:11px;margin-top:8px;opacity:.7">Note: Gemini Key lagane ke baad Zini real jawab dega. Abhi demo mode me hai.</p>
-</div>
-</div>
-
-<!-- WHATSAPP -->
-<div id="wa" class="section">
-<div class="card"><h3>💚 WhatsApp Pe Share Karo</h3>
-<p>Apne doston ko Jan Manch bhejo:</p><br>
-<a href="https://wa.me/?text=Jan%20Manch%20dekho%20-%20https%3A%2F%2Fsh14606.github.io%2Fjanmanch%2F" target="_blank">
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#000;color:#fff;font-family:Arial,sans-serif;padding-bottom:80px;overflow-x:hidden}
+button{cursor:pointer;font-family:inherit}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.janmanch-gola{width:90px;height:90px;border-radius:50%;margin:20px auto;position:relative;overflow:hidden;background:conic-gradient(from 0deg,#ff4d8d 0%,#a855f7 25%,#3b82f6 50%,#22d3ee 75%,#ff4d8d 100%);display:flex;align-items:center;justify-content:center}
+.janmanch-gola::before{content:'';position:absolute;inset:14px;background:#fff;border-radius:50%}
+.janmanch-gola::after{content:'';position:absolute;inset:28px;background:conic-gradient(#ff4d8d,#a855f7,#3b82f6);border-radius:50%}
+.janmanch-gola.spin{animation:ghumo .8s linear infinite}
+@keyframes ghumo{to{transform:rotate(360deg)}}
+.net-loader{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:rgba(0,0,0,.92);padding:22px 28px;border-radius:18px;text-align:center;display:none;border:1px solid #333}
+.net-loader.show{display:block}
+.net-loader .janmanch-gola{width:70px;height:70px;margin:0 auto 10px;animation:ghumo .8s linear infinite}
+.splash{background:#000;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative}
+.earth{font-size:110px;filter:drop-shadow(0 0 20px #22d3ee);animation:float 2.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.logo-gold{font-size:44px;font-weight:900;letter-spacing:1px;background:linear-gradient(180deg,#fff7ad,#facc15,#f59e0b,#b45309);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:10px;line-height:1.1}
+.logo-rainbow{font-size:42px;font-weight:900;line-height:1.1}
+.logo-rainbow span:nth-child(1){color:#ef4444}.logo-rainbow span:nth-child(2){color:#f97316}.logo-rainbow span:nth-child(3){color:#eab308}.logo-rainbow span:nth-child(4){color:#22c55e}.logo-rainbow span:nth-child(5){color:#3b82f6}.logo-rainbow span:nth-child(6){color:#a855f7}.logo-rainbow span:nth-child(7){color:#ec4899}.logo-rainbow span:nth-child(8){color:#f43f5e}
+.sub{color:#ccc;font-size:15px;margin-top:12px;line-height:1.5}.sub b{color:#fff}
+.btn-main{width:100%;max-width:340px;padding:15px;border-radius:30px;font-weight:800;font-size:16px;border:none;margin-top:18px}
+.btn-neon{background:linear-gradient(90deg,#3b82f6,#a855f7,#ec4899);color:#fff;box-shadow:0 6px 22px rgba(168,85,247,.5)}
+.btn-white{background:#fff;color:#000}.btn-outline{background:transparent;color:#fff;border:1px solid #444}.btn-dark{background:#1a1a1a;color:#fff;border:1px solid #333}.btn-yellow{background:#facc15;color:#000}
+.skip{position:absolute;top:14px;right:14px;background:#222;color:#fff;padding:8px 16px;border-radius:20px;border:none;font-size:13px}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;text-align:left;width:100%;max-width:360px}
+.lang{padding:13px 12px;border-radius:12px;background:#111;border:1px solid #333;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.lang.sel{border-color:#3b82f6;background:#0f172a}.lang.sel::after{content:'✓';color:#22c55e;font-weight:900}
+.topbar{position:sticky;top:0;z-index:100;background:#fff;color:#000;display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #eee}
+.earth-mini{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#a855f7);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.myphoto{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff0000,#ff6d00);padding:2px;flex-shrink:0;cursor:pointer}
+.myphoto div{width:100%;height:100%;border-radius:50%;background:#333;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #fff}
+.myphoto img{width:100%;height:100%;object-fit:cover}
+.dot{position:absolute;top:-2px;right:-2px;background:#ff0000;color:#fff;font-size:10px;min-width:18px;height:18px;border-radius:10px;display:none;align-items:center;justify-content:center;padding:0 4px;font-weight:800}.dot.show{display:flex}
+.catbar{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#fff;position:sticky;top:58px;z-index:99}.catbar::-webkit-scrollbar{display:none}
+.cat{white-space:nowrap;background:#f1f1f1;color:#000;padding:8px 15px;border-radius:18px;border:none;font-size:13px;font-weight:600}.cat.active{background:#000;color:#fff}.cat.green{background:#dcfce7;color:#166534}
+.wrap{padding:12px;background:#fff;color:#000;min-height:100vh}
+.sec-title{font-size:18px;font-weight:800;margin:14px 0 10px}.sec-sub{font-size:13px;color:#666;margin-top:-6px;margin-bottom:10px}
+.shorts-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}.shorts-row::-webkit-scrollbar{display:none}
+.short-card{min-width:150px;width:150px;height:250px;border-radius:14px;overflow:hidden;position:relative;background:#222;flex-shrink:0;cursor:pointer;color:#fff}
+.short-card img{width:100%;height:100%;object-fit:cover}.short-card .ov{position:absolute;bottom:0;left:0;right:0;padding:30px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-size:13px}
+.v-card{margin-bottom:18px;cursor:pointer}.v-card .thumb{border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:#eee;position:relative}
+.v-card .thumb img{width:100%;height:100%;object-fit:cover}.v-card .thumb .dur{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.85);color:#fff;font-size:12px;padding:3px 7px;border-radius:5px}
+.banner{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;font-weight:900;font-size:18px;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.banner.yellow{background:#facc15;color:#000}.banner.red{background:#ef4444;color:#fff}.banner.green{background:#84cc16;color:#000}
+.v-meta{display:flex;gap:10px;margin-top:10px}.ch{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#a855f7);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;flex-shrink:0;font-size:14px}
+.v-meta h3{font-size:15px;line-height:1.35}.v-meta p{font-size:13px;color:#666;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini-card{border-radius:12px;overflow:hidden;background:#111;color:#fff;cursor:pointer}.mini-card img{width:100%;aspect-ratio:16/9;object-fit:cover}.mini-card div{padding:10px;font-size:13px;line-height:1.4}.mini-card small{color:#aaa}
+.shorts-full{background:#000;min-height:100vh;position:relative}.shorts-full img.bg{width:100%;height:calc(100vh - 140px);object-fit:cover}
+.shorts-top{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.live-pill{background:#ef4444;color:#fff;padding:6px 12px;border-radius:20px;font-weight:800;font-size:13px}
+.shorts-side{position:absolute;right:12px;bottom:180px;display:flex;flex-direction:column;gap:18px;align-items:center;z-index:5;color:#fff;text-align:center;font-size:12px;font-weight:700}
+.side-btn{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.95);color:#000;display:flex;align-items:center;justify-content:center;font-size:24px;border:none}
+.shorts-bottom{position:absolute;left:12px;right:70px;bottom:90px;z-index:5;color:#fff}
+.sub-btn{background:#fff;color:#000;padding:7px 16px;border-radius:20px;font-
